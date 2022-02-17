@@ -1,3 +1,4 @@
+import { FaTrash } from 'react-icons/fa'
 import styles from './styles.module.scss'
 
 export type TodoItem = {
@@ -9,17 +10,26 @@ export type TodoItem = {
 type TodosProps = {
   todos: TodoItem[]
   changeTodo: (todoId: number) => void
+  removeTodo: (todoId: number) => void
 }
 
-export const Todos = ({ todos, changeTodo }: TodosProps) => (
+export const Todos = ({ todos, changeTodo, removeTodo }: TodosProps) => (
   <ul className={styles.container}>
     {todos.map(todo => (
-      <li
-        key={todo.id}
-        onClick={() => changeTodo(todo.id - 1)}
-        className={todo.completed ? styles.active : ''}
-      >
-        <span /> {todo.text}
+      <li key={todo.id}>
+        <div
+          className={`${styles.todo} ${todo.completed ? styles.active : ''}`}
+          onClick={() => changeTodo(todo.id - 1)}
+        >
+          <span /> {todo.text}
+        </div>
+        <button
+          className={styles['remove-todo']}
+          type="button"
+          onClick={() => removeTodo(todo.id)}
+        >
+          <FaTrash />
+        </button>
       </li>
     ))}
   </ul>

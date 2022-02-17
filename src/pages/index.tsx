@@ -27,17 +27,20 @@ export default function Home() {
   ])
 
   const handleChangeTodo = (todoId: number) => {
-    const auxTodosList = [...todosList]
-    auxTodosList[todoId].completed = !auxTodosList[todoId].completed
-    setTodosList(auxTodosList)
+    const tempTodosList = [...todosList]
+    tempTodosList[todoId].completed = !tempTodosList[todoId].completed
+    setTodosList(tempTodosList)
   }
 
   const handleNewTodo = text => {
-    console.log(text)
     setTodosList(state => [
       ...state,
       { text, id: state.length + 1, completed: false }
     ])
+  }
+
+  const handleRemoveTodo = (todoId: number) => {
+    setTodosList(state => state.filter(({ id }) => id !== todoId))
   }
 
   return (
@@ -51,7 +54,11 @@ export default function Home() {
 
         <NewTodo addTodo={handleNewTodo} />
 
-        <Todos todos={todosList} changeTodo={handleChangeTodo} />
+        <Todos
+          todos={todosList}
+          changeTodo={handleChangeTodo}
+          removeTodo={handleRemoveTodo}
+        />
       </main>
     </div>
   )

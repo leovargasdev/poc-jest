@@ -9,51 +9,83 @@
   li {
     display: flex;
     align-items: center;
+    column-gap: 1rem;
 
-    user-select: none;
-    font-size: 1.25rem;
-    border-radius: 0.5rem;
-    padding: 1.5rem 1rem;
-    background: var(--background-light);
-
-    span {
+    .remove-todo {
       display: flex;
-      
-      width: 20px;
-      height: 20px;
-      border-radius: 0.25rem;
+      align-items: center;
+      justify-content: center;
+
+      width: 30px;
+      padding: 0.75rem 0;
+
+      border-radius: 0.5rem;
       background: transparent;
-      border: 1px solid var(--secondary);
+      border: 1px solid var(--danger);
 
-      margin-right: 1rem;
-
-      &::before {
-        content: '';
-        visibility: hidden;
-        margin: 5px auto 0;
-        width: 10px;
-        height: 4px;
-        transform: rotate(-45deg);
-        border-left: 2px solid var(--background);
-        border-bottom: 2px solid var(--background);
+      svg {
+        color: var(--danger);
       }
 
       &:hover {
-        cursor: pointer;
-      }
-    }
+        background: var(--danger);
 
-    &.active {
-      text-decoration: line-through;
-
-      span {
-        background: var(--secondary);
-
-        &::before {
-          visibility: visible;
+        svg {
+          color: var(--background);
         }
       }
     }
+  }
+}
 
+.todo {
+  flex: 1;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--background-light);
+
+  span {
+    display: flex;
+    
+    width: 20px;
+    height: 20px;
+    border-radius: 0.25rem;
+    background: transparent;
+    border: 1px solid var(--secondary);
+
+
+    &::before {
+      content: '';
+      visibility: hidden;
+      margin: 5px auto 0;
+      width: 10px;
+      height: 4px;
+      transform: rotate(-45deg);
+      border-left: 2px solid var(--background);
+      border-bottom: 2px solid var(--background);
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    text-decoration: line-through;
+
+    span {
+      background: var(--secondary);
+
+      &::before {
+        visibility: visible;
+      }
+    }
   }
 }
